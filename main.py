@@ -80,3 +80,16 @@ def consultar_listado_completo():
         print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
 
     conexion.close()
+
+
+def reporte_bajo_stock():
+    conexion = sqlite3.connect("inventario.db")
+    cursor = conexion.cursor()
+
+    cursor.execute("SELECT * FROM Producto WHERE cantidad < 5")
+    tabla = cursor.fetchall()
+
+    for fila in tabla:
+        print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
+
+    conexion.close()
