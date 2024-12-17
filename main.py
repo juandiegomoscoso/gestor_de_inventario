@@ -93,3 +93,19 @@ def reporte_bajo_stock():
         print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
 
     conexion.close()
+
+
+def mostrar_menu():
+    print("""
+    MENU:
+    1. Registrar producto
+    2. Consultar producto
+    3. Actualizar producto
+    4. Eliminar producto
+    5. Consultar listado completo
+    6. Reporte bajo stock
+    7. Salir
+    """)
+
+    opcion = int(input("Ingrese la opcion: "))
+    return opcion
