@@ -30,3 +30,17 @@ def registrar_producto():
 
     conexion.commit()
     conexion.close()
+
+
+def consultar_producto():
+    conexion = sqlite3.connect("inventario.db")
+    cursor = conexion.cursor()
+
+    producto = input("Ingrese el nombre del producto: ")
+    cursor.execute("SELECT * FROM Producto WHERE nombre = ?", (producto,))
+    tabla = cursor.fetchall()
+
+    for fila in tabla:
+        print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
+
+    conexion.close()
