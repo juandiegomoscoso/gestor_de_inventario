@@ -67,3 +67,16 @@ def eliminar_producto():
 
     conexion.commit()
     conexion.close()
+
+
+def consultar_listado_completo():
+    conexion = sqlite3.connect("inventario.db")
+    cursor = conexion.cursor()
+
+    cursor.execute("SELECT * FROM Producto")
+    tabla = cursor.fetchall()
+
+    for fila in tabla:
+        print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
+
+    conexion.close()
