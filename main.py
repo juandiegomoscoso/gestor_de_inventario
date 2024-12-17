@@ -1,5 +1,29 @@
 import sqlite3
 
+def main():
+    crear_base_datos()
+    while True:
+        opcion = mostrar_menu()
+
+        if opcion == 1:
+            registrar_producto()
+        elif opcion == 2:
+            consultar_producto()
+        elif opcion == 3:
+            actualizar_producto()
+        elif opcion == 4:
+            eliminar_producto()
+        elif opcion == 5:
+            consultar_listado_completo()
+        elif opcion == 6:
+            reporte_bajo_stock()
+        elif opcion == 7:
+            break
+        else:
+            print("Opcion no valida")
+
+
+
 def crear_base_datos():
     conexion = sqlite3.connect("inventario.db")
     cursor = conexion.cursor()
@@ -14,6 +38,7 @@ def crear_base_datos():
     
     conexion.commit()
     conexion.close()
+
 
 
 def registrar_producto():
@@ -32,6 +57,7 @@ def registrar_producto():
     conexion.close()
 
 
+
 def consultar_producto():
     conexion = sqlite3.connect("inventario.db")
     cursor = conexion.cursor()
@@ -46,6 +72,7 @@ def consultar_producto():
     conexion.close()
 
 
+
 def actualizar_producto():
     conexion = sqlite3.connect("inventario.db")
     cursor = conexion.cursor()
@@ -58,6 +85,7 @@ def actualizar_producto():
     conexion.close()
 
 
+
 def eliminar_producto():
     conexion = sqlite3.connect("inventario.db")
     cursor = conexion.cursor()
@@ -67,6 +95,7 @@ def eliminar_producto():
 
     conexion.commit()
     conexion.close()
+
 
 
 def consultar_listado_completo():
@@ -82,6 +111,7 @@ def consultar_listado_completo():
     conexion.close()
 
 
+
 def reporte_bajo_stock():
     conexion = sqlite3.connect("inventario.db")
     cursor = conexion.cursor()
@@ -93,6 +123,7 @@ def reporte_bajo_stock():
         print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
 
     conexion.close()
+
 
 
 def mostrar_menu():
