@@ -44,3 +44,17 @@ def consultar_producto():
         print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
 
     conexion.close()
+
+
+def actualizar_producto():
+    conexion = sqlite3.connect("inventario.db")
+    cursor = conexion.cursor()
+
+    id = int(input("Ingrese el ID del producto: "))
+    nueva_cantidad = int(input("Ingrese la nueva cantidad: "))
+    cursor.execute("UPDATE Producto SET cantidad = ? WHERE id = ?", (nueva_cantidad, id))
+
+    conexion.commit()
+    conexion.close()
+
+
