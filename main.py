@@ -1,4 +1,7 @@
 import sqlite3
+from tabulate import tabulate
+
+producto_headers = ["ID", "Nombre", "Descripcion", "Cantidad", "Precio", "Categoria"]
 
 def main():
     crear_base_datos()
@@ -78,11 +81,10 @@ def consultar_producto():
 
     if fila:
         print("\nProducto encontrado:")
-        print(f"ID: {fila[0]}, Nombre: {fila[1]}, Descripcion: {fila[2]}, Cantidad: {fila[3]}, Precio: {fila[4]}, Categoria: {fila[5]}")
+        print(tabulate([fila], headers=producto_headers, tablefmt="grid"))
     else:
         print(f"\nProducto con ID '{producto_id}' no encontrado.")
     conexion.close()
-
 
 
 def actualizar_producto():
@@ -134,8 +136,7 @@ def consultar_listado_completo():
 
     if tabla:
         print("\nListado completo:")
-        for fila in tabla:
-            print(f"ID: {fila[0]}, Nombre: {fila[1]}, Descripcion: {fila[2]}, Cantidad: {fila[3]}, Precio: {fila[4]}, Categoria: {fila[5]}")
+        print(tabulate(tabla, headers=producto_headers, tablefmt="grid"))
     else:
         print("\nNo hay productos registrados.")
 
@@ -152,8 +153,7 @@ def reporte_bajo_stock():
 
     if tabla:
         print("\nProductos con bajo stock:")
-        for fila in tabla:
-            print(f"ID: {fila[0]}, Nombre: {fila[1]}, Descripcion: {fila[2]}, Cantidad: {fila[3]}, Precio: {fila[4]}, Categoria: {fila[5]}")
+        print(tabulate(tabla, headers=producto_headers, tablefmt="grid"))
     else:
         print("\nNo hay productos con bajo stock.")
 
@@ -166,7 +166,7 @@ def mostrar_menu():
     MENU:
     1. Registrar producto
     2. Consultar listado productos
-    3. Actualizar producto
+    3. Actualizar cantidad de producto
     4. Eliminar producto
     5. Buscar producto
     6. Reporte bajo stock
