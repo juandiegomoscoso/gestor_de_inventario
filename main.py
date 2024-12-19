@@ -110,14 +110,13 @@ def eliminar_producto():
     conexion = sqlite3.connect("inventario.db")
     cursor = conexion.cursor()
 
-    nombre = input("Ingrese el nombre del producto: ")
-    cursor.execute("DELETE FROM Producto WHERE nombre = ?", (nombre,))
+    producto_id = int(input("Ingrese el ID del producto: "))
+    cursor.execute("DELETE FROM Producto WHERE id = ?", (producto_id,))
 
-    if cursor.rowcount:
-        print(f"\nProducto '{nombre}' no encontrado.")
+    if cursor.rowcount == 0:
+        print(f"\nProducto con ID '{producto_id}' no encontrado.")
     else:
-        print(f"\nProducto '{nombre}' eliminado.")
-        
+        print(f"\nProducto con ID '{producto_id}' eliminado.")
 
     conexion.commit()
     conexion.close()
