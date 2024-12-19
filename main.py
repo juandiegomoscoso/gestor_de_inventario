@@ -70,15 +70,15 @@ def consultar_producto():
     conexion = sqlite3.connect("inventario.db")
     cursor = conexion.cursor()
 
-    producto = input("Ingrese el nombre del producto: ")
-    cursor.execute("SELECT * FROM Producto WHERE nombre = ?", (producto,))
+    producto_id = int(input("Ingrese el ID del producto: "))
+    cursor.execute("SELECT * FROM Producto WHERE id = ?", (producto_id,))
     fila = cursor.fetchone()
 
     if fila:
         print("\nProducto encontrado:")
         print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
     else:
-        print(f"\nProducto '{producto}' no encontrado.")
+        print(f"\nProducto con ID '{producto_id}' no encontrado.")
     conexion.close()
 
 
