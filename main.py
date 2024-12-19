@@ -105,6 +105,12 @@ def eliminar_producto():
     nombre = input("Ingrese el nombre del producto: ")
     cursor.execute("DELETE FROM Producto WHERE nombre = ?", (nombre,))
 
+    if cursor.rowcount:
+        print(f"\nProducto '{nombre}' no encontrado.")
+    else:
+        print(f"\nProducto '{nombre}' eliminado.")
+        
+
     conexion.commit()
     conexion.close()
 
