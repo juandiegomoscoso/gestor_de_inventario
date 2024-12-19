@@ -83,7 +83,15 @@ def actualizar_producto():
 
     nombre = input("Ingrese el nombre del producto: ")
     nueva_cantidad = int(input("Ingrese la nueva cantidad: "))
+
+    if nueva_cantidad < 0:
+        print("La cantidad no puede ser negativa.")
+        return
+
     cursor.execute("UPDATE Producto SET cantidad = ? WHERE nombre = ?", (nueva_cantidad, nombre))
+
+    if cursor.rowcount == 0:
+        print(f"Producto '{nombre}' no encontrado.")
 
     conexion.commit()
     conexion.close()
@@ -133,7 +141,7 @@ def reporte_bajo_stock():
             print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
     else:
         print("\nNo hay productos con bajo stock.")
-        
+
     conexion.close()
 
 
