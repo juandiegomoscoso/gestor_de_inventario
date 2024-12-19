@@ -7,13 +7,13 @@ def main():
         if opcion == 1:
             registrar_producto()
         elif opcion == 2:
-            consultar_producto()
+            consultar_listado_completo()
         elif opcion == 3:
             actualizar_producto()
         elif opcion == 4:
             eliminar_producto()
         elif opcion == 5:
-            consultar_listado_completo()
+            consultar_producto()
         elif opcion == 6:
             reporte_bajo_stock()
         elif opcion == 7:
@@ -165,10 +165,10 @@ def mostrar_menu():
     print("""
     MENU:
     1. Registrar producto
-    2. Consultar producto
+    2. Consultar listado productos
     3. Actualizar producto
     4. Eliminar producto
-    5. Consultar listado completo
+    5. Buscar producto
     6. Reporte bajo stock
     7. Salir
     """)
