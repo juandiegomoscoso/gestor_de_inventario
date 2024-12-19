@@ -31,6 +31,7 @@ def crear_base_datos():
         CREATE TABLE IF NOT EXISTS Producto (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nombre TEXT,
+            descripcion TEXT,
             cantidad INTEGER,
             precio REAL,
             categoria TEXT
@@ -48,6 +49,7 @@ def registrar_producto():
     cursor = conexion.cursor()
 
     nombre = input("Ingrese el nombre del producto: ")
+    descripcion = input("Ingrese la descripcion del producto: ")
     cantidad = int(input("Ingrese la cantidad: "))
     if cantidad < 0:
         print("La cantidad no puede ser negativa.")
@@ -58,8 +60,8 @@ def registrar_producto():
         return
     categoria = input("Ingrese la categoria: ")
 
-    cursor.execute('''INSERT INTO Producto (nombre, cantidad, precio, categoria)
-                   VALUES (?, ?, ?, ?)''', (nombre, cantidad, precio, categoria))
+    cursor.execute('''INSERT INTO Producto (nombre, descripcion, cantidad, precio, categoria)
+                   VALUES (?, ?, ?, ?, ?)''', (nombre, descripcion, cantidad, precio, categoria))
 
     conexion.commit()
     conexion.close()
@@ -76,7 +78,7 @@ def consultar_producto():
 
     if fila:
         print("\nProducto encontrado:")
-        print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
+        print(f"ID: {fila[0]}, Nombre: {fila[1]}, Descripcion: {fila[2]}, Cantidad: {fila[3]}, Precio: {fila[4]}, Categoria: {fila[5]}")
     else:
         print(f"\nProducto con ID '{producto_id}' no encontrado.")
     conexion.close()
@@ -133,7 +135,7 @@ def consultar_listado_completo():
     if tabla:
         print("\nListado completo:")
         for fila in tabla:
-            print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
+            print(f"ID: {fila[0]}, Nombre: {fila[1]}, Descripcion: {fila[2]}, Cantidad: {fila[3]}, Precio: {fila[4]}, Categoria: {fila[5]}")
     else:
         print("\nNo hay productos registrados.")
 
@@ -151,7 +153,7 @@ def reporte_bajo_stock():
     if tabla:
         print("\nProductos con bajo stock:")
         for fila in tabla:
-            print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
+            print(f"ID: {fila[0]}, Nombre: {fila[1]}, Descripcion: {fila[2]}, Cantidad: {fila[3]}, Precio: {fila[4]}, Categoria: {fila[5]}")
     else:
         print("\nNo hay productos con bajo stock.")
 
@@ -173,6 +175,7 @@ def mostrar_menu():
 
     opcion = int(input("Ingrese la opcion: "))
     return opcion
+
 
 
 main()
