@@ -27,16 +27,19 @@ def crear_base_datos():
     conexion = sqlite3.connect("inventario.db")
     cursor = conexion.cursor()
 
-    cursor.execute("""CREATE TABLE IF NOT EXISTS Producto (
-                   id INTEGER PRIMARY KEY AUTOINCREMENT,
-                   nombre TEXT,
-                   cantidad INTEGER,
-                   precio REAL,
-                   categoria TEXT
-                   )""")
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS Producto (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT,
+            cantidad INTEGER,
+            precio REAL,
+            categoria TEXT
+        )
+    """)
     
     conexion.commit()
     conexion.close()
+    print("Base de datos creada con exito.")
 
 
 
@@ -106,9 +109,12 @@ def consultar_listado_completo():
     cursor.execute("SELECT * FROM Producto")
     tabla = cursor.fetchall()
 
-    print("\nListado completo:")
-    for fila in tabla:
-        print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
+    if tabla:
+        print("\nListado completo:")
+        for fila in tabla:
+            print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
+    else:
+        print("\nNo hay productos registrados.")
 
     conexion.close()
 
@@ -121,10 +127,13 @@ def reporte_bajo_stock():
     cursor.execute("SELECT * FROM Producto WHERE cantidad < 5")
     tabla = cursor.fetchall()
 
-    print("\nProductos con bajo stock:")
-    for fila in tabla:
-        print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
-
+    if tabla:
+        print("\nProductos con bajo stock:")
+        for fila in tabla:
+            print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
+    else:
+        print("\nNo hay productos con bajo stock.")
+        
     conexion.close()
 
 
@@ -143,7 +152,6 @@ def mostrar_menu():
 
     opcion = int(input("Ingrese la opcion: "))
     return opcion
-
 
 
 main()
