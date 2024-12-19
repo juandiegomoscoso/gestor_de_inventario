@@ -49,7 +49,13 @@ def registrar_producto():
 
     nombre = input("Ingrese el nombre del producto: ")
     cantidad = int(input("Ingrese la cantidad: "))
+    if cantidad < 0:
+        print("La cantidad no puede ser negativa.")
+        return
     precio = float(input("Ingrese el precio: "))
+    if precio < 0:
+        print("El precio no puede ser negativo.")
+        return
     categoria = input("Ingrese la categoria: ")
 
     cursor.execute('''INSERT INTO Producto (nombre, cantidad, precio, categoria)
