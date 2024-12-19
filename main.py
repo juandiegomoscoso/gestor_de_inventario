@@ -63,9 +63,9 @@ def consultar_producto():
 
     producto = input("Ingrese el nombre del producto: ")
     cursor.execute("SELECT * FROM Producto WHERE nombre = ?", (producto,))
-    tabla = cursor.fetchall()
+    fila = cursor.fetchone()
 
-    if tabla:
+    if fila:
         print("\nProducto encontrado:")
         print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
     else:
