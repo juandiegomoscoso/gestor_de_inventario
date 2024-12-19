@@ -87,17 +87,19 @@ def actualizar_producto():
     conexion = sqlite3.connect("inventario.db")
     cursor = conexion.cursor()
 
-    nombre = input("Ingrese el nombre del producto: ")
+    producto_id = int(input("Ingrese el ID del producto: "))
     nueva_cantidad = int(input("Ingrese la nueva cantidad: "))
 
     if nueva_cantidad < 0:
         print("La cantidad no puede ser negativa.")
         return
 
-    cursor.execute("UPDATE Producto SET cantidad = ? WHERE nombre = ?", (nueva_cantidad, nombre))
+    cursor.execute("UPDATE Producto SET cantidad = ? WHERE id = ?", (nueva_cantidad, producto_id))
 
     if cursor.rowcount == 0:
-        print(f"Producto '{nombre}' no encontrado.")
+        print(f"Producto con ID '{producto_id}' no encontrado.")
+    else:
+        print(f"Producto con ID '{producto_id}' actualizado exitosamente.")
 
     conexion.commit()
     conexion.close()
