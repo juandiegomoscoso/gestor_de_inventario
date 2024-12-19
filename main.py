@@ -4,7 +4,6 @@ def main():
     crear_base_datos()
     while True:
         opcion = mostrar_menu()
-
         if opcion == 1:
             registrar_producto()
         elif opcion == 2:
@@ -66,9 +65,11 @@ def consultar_producto():
     cursor.execute("SELECT * FROM Producto WHERE nombre = ?", (producto,))
     tabla = cursor.fetchall()
 
-    for fila in tabla:
+    if tabla:
+        print("\nProducto encontrado:")
         print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
-
+    else:
+        print(f"\nProducto '{producto}' no encontrado.")
     conexion.close()
 
 
@@ -90,7 +91,7 @@ def eliminar_producto():
     conexion = sqlite3.connect("inventario.db")
     cursor = conexion.cursor()
 
-    nombre = input("Ingrese el ID del producto: ")
+    nombre = input("Ingrese el nombre del producto: ")
     cursor.execute("DELETE FROM Producto WHERE nombre = ?", (nombre,))
 
     conexion.commit()
@@ -105,6 +106,7 @@ def consultar_listado_completo():
     cursor.execute("SELECT * FROM Producto")
     tabla = cursor.fetchall()
 
+    print("\nListado completo:")
     for fila in tabla:
         print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
 
@@ -119,6 +121,7 @@ def reporte_bajo_stock():
     cursor.execute("SELECT * FROM Producto WHERE cantidad < 5")
     tabla = cursor.fetchall()
 
+    print("\nProductos con bajo stock:")
     for fila in tabla:
         print(f"ID: {fila[0]}, Nombre: {fila[1]}, Cantidad: {fila[2]}, Precio: {fila[3]}, Categoria: {fila[4]}")
 
