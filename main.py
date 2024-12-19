@@ -77,9 +77,9 @@ def actualizar_producto():
     conexion = sqlite3.connect("inventario.db")
     cursor = conexion.cursor()
 
-    id = int(input("Ingrese el ID del producto: "))
+    nombre = input("Ingrese el nombre del producto: ")
     nueva_cantidad = int(input("Ingrese la nueva cantidad: "))
-    cursor.execute("UPDATE Producto SET cantidad = ? WHERE id = ?", (nueva_cantidad, id))
+    cursor.execute("UPDATE Producto SET cantidad = ? WHERE nombre = ?", (nueva_cantidad, nombre))
 
     conexion.commit()
     conexion.close()
@@ -140,3 +140,7 @@ def mostrar_menu():
 
     opcion = int(input("Ingrese la opcion: "))
     return opcion
+
+
+
+main()
