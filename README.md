@@ -5,10 +5,10 @@ Este programa es una aplicación de consola para gestionar el inventario de un s
 ## Funcionalidades
 
 1. **Registrar Producto**: Permite agregar un nuevo producto al inventario.
-2. **Consultar Producto**: Permite buscar un producto por su nombre y mostrar sus detalles.
+2. **Consultar Listado Completo**: Muestra todos los productos en el inventario.
 3. **Actualizar Producto**: Permite actualizar la cantidad de un producto existente.
 4. **Eliminar Producto**: Permite eliminar un producto del inventario.
-5. **Consultar Listado Completo**: Muestra todos los productos en el inventario.
+5. **Consultar Producto**: Permite buscar un producto por su ID y mostrar sus detalles.
 6. **Reporte Bajo Stock**: Genera un reporte de productos con bajo stock.
 7. **Salir**: Cierra la aplicación.
 
@@ -16,6 +16,7 @@ Este programa es una aplicación de consola para gestionar el inventario de un s
 
 - Python 3.x
 - SQLite3
+- Tabulate (para la visualización de tablas)
 
 ## Instalación
 
@@ -27,6 +28,10 @@ Este programa es una aplicación de consola para gestionar el inventario de un s
     ```bash
     cd gestor_de_inventario
     ```
+3. Instala las dependencias:
+    ```bash
+    pip install tabulate
+    ```
 
 ## Uso
 
@@ -35,4 +40,3 @@ Este programa es una aplicación de consola para gestionar el inventario de un s
     python main.py
     ```
 2. Sigue las instrucciones en pantalla para interactuar con el menú principal.
-
